@@ -14,34 +14,40 @@ public:
         ListNode *Answer = new ListNode;
         ListNode * Temp;
         int count=0;
-        int carry=0,once=1;
+        int carry=0,once=0;
         int result1 =0;
         while(l1 != NULL || l2 != NULL || carry != 0){
-             if((l1 == NULL && l2 == NULL) && once > 1){
+          //  cout<<"coutn"<<count<<endl;
+             if((l1 == NULL && l2 == NULL)  ){
                  result1 = carry;
                  carry=0;
                  once =0;
-                 cout<<result1<<endl;
+                 if(result1 ==0 ){
+                     break;
+                 }
+                 
              }
-             if(l1 == NULL && l2 != NULL){
+             else if(l1 == NULL ){
                 result1 = carry+l2->val;
                 l2 = l2->next;
-                cout<<result1<<endl;
+           
                  once++;
+                 carry=0;
                 
             }
-             if(l2 == NULL && l1 != NULL){
+             else if(l2 == NULL ){
                 result1 = carry + l1->val;
                 l1 = l1->next;
-                cout<<result1<<endl;
                  once++;
+                 carry=0;
                 
             }
             else{
                 result1 = l1->val + l2->val + carry;
-                  cout<<result1<<endl;
+             //   cout<<result1<<endl;
                 l1 = l1->next;
                 l2 = l2->next;
+                carry=0;
             }
             count++;
             if(result1>=20){
@@ -64,6 +70,7 @@ public:
                 Temp = newnode;
                 
             }
+            
           
             
         }
